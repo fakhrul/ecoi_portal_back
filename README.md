@@ -1,6 +1,6 @@
-# Tuntung API
+# ECOI PORTAL API
 
-## Install database
+## Install database in production
 
 1. Install database
 
@@ -23,8 +23,8 @@ postgres@ubuntu-dev:~$ exit
 ## Flask Installation
 
 - Install [Python](https://www.python.org/downloads/), [Pipenv](https://docs.pipenv.org/) and [Postgres](https://www.postgresql.org/) on your machine
-- Clone the repository `$ git clone git@github.com:jerichoruz/backbloggie.git`
-- Change into the directory `$ cd /backbloggie`
+- Clone the repository 
+- Change into the directory
 - Create the project virtual environment with `$ pipenv --three` command
 - Activate the project virtual environment with `$ pipenv shell` command
 - Install all required dependencies with `$ pipenv install`
@@ -47,11 +47,11 @@ postgres@ubuntu-dev:~$ exit
 
 - Create database blog
   ```
-  $ sudo su - postgres -c "createuser -s bloguser" 2> /dev/null || true
+  $ sudo su - postgres -c "createuser -s ecoi_portal" 2> /dev/null || true
   $ psql
-  # ALTER USER bloguser WITH ENCRYPTED PASSWORD 'bloguser';
+  # ALTER USER ecoi_portal WITH ENCRYPTED PASSWORD 'qwe123';
   # CREATE DATABASE blog WITH TEMPLATE template0;
-  # ALTER DATABASE blog OWNER TO bloguser;
+  # ALTER DATABASE blog OWNER TO ecoi_portal;
   ```
 - Due to a bad flask relation please Comment line 5 from UserModel before Migrate
   ```
