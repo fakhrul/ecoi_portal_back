@@ -56,13 +56,13 @@ def seed():
     #                    'address': 'Terengganu, Malaysia'}).save()
 
     user1 = UserModel({
-        'email': 'admin@tuntung.com',
+        'email': 'admin@jps.com',
         'password': 'qwe123'
     })
     user1.save()
 
     user2 = UserModel({
-        'email': 'user@tuntung.com',
+        'email': 'user@jps.com',
         'password': 'qwe123'
     })
     user2.save()

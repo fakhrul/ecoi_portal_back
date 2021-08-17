@@ -32,12 +32,14 @@ def create_app(env_name):
     # app initiliazation
     app = Flask(__name__)
     # cors
-    CORS(app, supports_credentials=True)
-    # cors = CORS(app)
+    # CORS(app)
+    # CORS(app, resources={r"/api/*": {"origins": "http://127.0.0.1:8080"}})
+    #cors = CORS(app)
     # cors = CORS(app, resources={r"/api/*": {"origins": "http://localhost:8080"}})
+    # cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
     # cors = CORS(app, resources={r"/foo": {"origins": "http://localhost:port"}})
     # cors = CORS(app, resources={r"*": {"origins": "http://localhost:8080"}})
-    # CORS(app, resources={ r'/*': {'origins': 'http://localhost:8080'}}, supports_credentials=True)
+    CORS(app, resources={ r'/*': {'origins': 'http://localhost:8080'}}, supports_credentials=True)
 
     app.config.from_object(app_config[env_name])
 
@@ -67,9 +69,10 @@ def create_app(env_name):
     app.register_blueprint(walker_blueprint, url_prefix='/api/walker')
     app.register_blueprint(config_blueprint, url_prefix='/api/config')
 
+    
     @app.route('/')
     def index():
-        return 'TUNTUNG API'
+        return 'Welcome to Ecoi API v1.0'
 
 
     return app

@@ -72,7 +72,6 @@ def get_all():
 @user_api.route('/loginAdmin', methods=['POST'])
 def loginAdmin():
     req_data = request.get_json()
-    
     try:
         data = user_schema.load({
             "email": req_data.get("email"),
@@ -111,8 +110,8 @@ def loginAdmin():
 
 @user_api.route('/login', methods=['POST'])
 def login():
+
     req_data = request.get_json()
-    
     try:
         data = user_schema.load({
             "email": req_data.get("email"),
@@ -124,15 +123,19 @@ def login():
         return custom_response({'error': 'you need email and password to sign in'}, 400)
 
     user = UserModel.get_user_by_email(data.get('email'))
+    print('1')
     if not user:
         return custom_response({'error': 'no user found'}, 400)
+    print('1.1')
     if not user.check_hash(data.get('password')):
         return custom_response({'error': 'invalid credentials'}, 400)
 
+    print('2')
     profile = ProfileModel.get_profile_by_email(data.get('email'))
     if not profile:
         return custom_response({'error': 'no profile found'}, 400)
 
+    print('3')
     ser_user = user_schema.dump(user)
     ser_profile = profile_schema.dump(profile)
     token = Auth.generate_token(ser_user.get('id'))
